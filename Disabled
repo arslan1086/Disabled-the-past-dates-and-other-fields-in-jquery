@@ -1,0 +1,110 @@
+<div class="row mt-5">
+    <div class="col-md-6">
+        <label for="start_date">Start date:</label>
+        <input type="date" id="start_date" name="start_date">
+    </div>
+    <div class="col-md-6">
+        <label for="end_date">End date:</label>
+        <input type="date" id="end_date" name="end_date">
+    </div>
+</div>
+
+
+    //Full leave or half leave
+    <div class="col-md-6">
+        <div class="form-group">
+            <select name="leave_choice" id="type_of_leave" class="form-control select">
+                <option class="fullleave" name="fullleave" value="fullleave">Full Leave</option>
+                <option class="halfleave" name="halfleave" value="halfleave">Half Leave</option>
+            </select>
+        </div>
+    </div>
+        
+        
+    //First half and second half
+    <div class="row">
+        <div class="col-md-6">
+            <div style="display: none" class="form-group half_leave_type" id="half_leave_type">
+                <select name="half_leave_type" id="" class="form-control select">
+                    <option value="firsthalf">First Half</option>
+                    <option value="secondhalf">Second Half</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    
+    //Dates field
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <label for="start_date">Start date:</label>
+            <input type="date" id="start_date" name="start_date">
+        </div>
+        <div class="col-md-6" id="end_date1">
+            <label for="end_date">End date:</label>
+            <input type="date" id="end_date" name="end_date">
+        </div>
+    </div>
+    
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+<script>
+//Show and hide the fields in jquery Code start
+$(document).ready(function() {
+    $("#type_of_leave").change(function() {
+        var leave_type = $(this).find(":selected").val();
+        if(leave_type == 'halfleave') {
+            $('#end_date1').hide()
+            $('#half_leave_type').show();
+        }
+        else {
+            $('#end_date1').show()
+            $('#half_leave_type').hide();
+        }
+    });
+
+});
+//Show and hide the fields in jquery Code end
+
+
+
+
+//Disabled the past dates in jquery Start
+$(document).ready(function() {
+    var dtToday = new Date();
+    var month = dtToday.getMonth()+1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+
+    if(month < 10)
+        month = '0' + month.toString();
+
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+    $('#start_date').attr('min', maxDate);
+});
+
+$(document).ready(function() {
+    var dtToday = new Date();
+    var month = dtToday.getMonth()+1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+
+    if(month < 10)
+        month = '0' + month.toString();
+
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+    $('#end_date').attr('min', maxDate);
+});
+//Disabled-the-past-dates-in-jquery End
+
+</script>
